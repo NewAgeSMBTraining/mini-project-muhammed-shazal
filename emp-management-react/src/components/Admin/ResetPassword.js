@@ -1,8 +1,9 @@
 import React, { useState } from 'react'
-import { useParams } from 'react-router';
+import { useHistory, useParams } from 'react-router';
 import { HTTP } from '../../config/axios'
 
 function ResetPassword() {
+    const history=useHistory()
     const { token } = useParams()
     const [data, setData] = useState()
     const changeFormHandler = (e) => {
@@ -14,6 +15,7 @@ function ResetPassword() {
         e.preventDefault();
         HTTP.post(`/reset-password/${token}`, data).then((res) => {
             alert(res.data.msg)
+            history.push('/')
             console.log(res);
         }).catch((err) => {
             alert(err.data.msg)

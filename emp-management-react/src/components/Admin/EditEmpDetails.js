@@ -16,6 +16,12 @@ function EditEmpDetails(props) {
   }, [empDetails])
   const handleFormData = (e) => {
     if (e.target.id == "male" || e.target.id == "female") {
+      if(e.target.id == "male"){
+        document.getElementById("female").checked = false;
+      }
+      else{
+        document.getElementById("male").checked = false;
+      }
       const newData = { ...data }
       newData['gender'] = e.target.name
       setData(newData)
@@ -30,6 +36,7 @@ function EditEmpDetails(props) {
   const handleSubmit = (e) => {
     e.preventDefault();
     HTTP.post(`/edit-employee/${empDetails._id}`, data).then((data) => {
+      alert('Details edited successfully')
       history.push('/admin-home')
     }).catch((err) => {
       alert('Updation Failed')
@@ -53,7 +60,7 @@ function EditEmpDetails(props) {
         </div>
         <div class="form-group">
           <label for="inputdob">Date of birth:</label>
-          <input onChange={(e) => { handleFormData(e) }} type="date" class="form-control col-md-3" id="dob" value={empDetails.dob} />
+          <input onChange={(e) => { handleFormData(e) }} type="date" class="form-control col-md-3" id="dob" defaultValue={empDetails.dob} />
         </div>
         <label>Gender</label>
         <div class="form-check">

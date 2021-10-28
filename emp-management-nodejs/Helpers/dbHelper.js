@@ -140,29 +140,42 @@ module.exports = {
             if (data.role == 'admin') {
                 let admin = await adminSchema.findById(data._id)
                 bcrypt.compare(data.old_password, admin.password).then(async (result) => {
-                    let pwd = await bcrypt.hash(data.new_password, 10)
-                    adminSchema.findByIdAndUpdate(data._id, {
-                        password: pwd
-                    }).then((res) => {
-                        resolve(res)
-                    }).catch((err) => {
-                        reject(err)
-                    })
+                    if(result){
+                        let pwd = await bcrypt.hash(data.new_password, 10)
+                        adminSchema.findByIdAndUpdate(data._id, {
+                            password: pwd
+                        }).then((res) => {
+                            resolve(res)
+                        }).catch((err) => {
+                            reject(err)
+                        })
+                    }
+                    else{
+                        reject({msg:"Invalid old password"})
+                    }
                 }).catch((err) => {
                     reject(err)
                 })
             }
             else if (data.role == 'employee') {
+                console.log('emp p');
                 let user = await employeeSchema.findById(data._id)
+                console.log(data.old_password);
+                console.log(user.password);
                 bcrypt.compare(data.old_password, user.password).then(async (result) => {
-                    let pwd = await bcrypt.hash(data.new_password, 10)
-                    employeeSchema.findByIdAndUpdate(data._id, {
-                        password: pwd
-                    }).then((res) => {
-                        resolve(res)
-                    }).catch((err) => {
-                        reject(err)
-                    })
+                    if(result){
+                        let pwd = await bcrypt.hash(data.new_password, 10)
+                        employeeSchema.findByIdAndUpdate(data._id, {
+                            password: pwd
+                        }).then((res) => {
+                            resolve(res)
+                        }).catch((err) => {
+                            reject(err)
+                        })
+                    }
+                    else{
+                        reject({msg:"Invalid old password"})
+                    }
                 }).catch((err) => {
                     reject(err)
                 })

@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import { HTTP } from '../../config/axios'
 import moment from 'moment';
+import { useHistory } from 'react-router';
 function ViewLeaves(props) {
+  const history=useHistory()
   const [leaveDetails, setLeaveDetails] = useState()
   useEffect(() => {
     HTTP.get(`/users/view-leave/${props.location.props._id}`).then((data) => {
@@ -12,8 +14,18 @@ function ViewLeaves(props) {
       console.log(err);
     })
   }, [])
+  const back=()=>{
+    history.push({
+      pathname: '/emp-home',
+      props: { _id:leaveDetails[0].uid }
+  })
+  }
   return (
-    <div>
+    <div className="container">
+      <div>
+      <button class="btn btn-dark" type="button" onClick={back}>Back</button>
+      </div>
+      <h1 className="text-center mt-1">Applied Leaves</h1>
       <table class="table table-striped">
         <thead>
           <tr>

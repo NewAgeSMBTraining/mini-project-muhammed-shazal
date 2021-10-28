@@ -6,8 +6,7 @@ router.post('/change-password', function (req, res, next) {
     dbHelper.changePassword(req.body).then((data) => {
         res.send(data)
     }).catch((err) => {
-        res.status(500)
+        res.status(400).json(err)
     })
-    res.send('respond with a resource');
 });
 module.exports = router;

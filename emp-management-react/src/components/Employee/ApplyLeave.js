@@ -16,7 +16,7 @@ function ApplyLeave(props) {
     const handleSubmit = (e) => {
         e.preventDefault();
         HTTP.post('/users/apply-leave', data).then((res) => {
-            alert("Success")
+            alert("Leave request sent to Admin")
             history.push({
                 pathname: '/emp-home',
                 props: { _id: props.location.props._id }

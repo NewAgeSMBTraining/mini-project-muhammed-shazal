@@ -1,8 +1,10 @@
 import { Http } from '@material-ui/icons'
 import React, { useState } from 'react'
+import { useHistory } from 'react-router'
 import { HTTP } from '../../config/axios'
 import './AddEmployee.css'
 function AddEmployee() {
+  const history=useHistory()
   const [data, setData] = useState({
     name: "",
     email: "",
@@ -18,6 +20,7 @@ function AddEmployee() {
     event.preventDefault()
     HTTP.post('/add-employee', data).then((data) => {
       alert("Employee Added")
+      history.push('/admin-home')
     }).catch((err) => {
       alert("Failed to add")
     })
@@ -82,7 +85,7 @@ function AddEmployee() {
             <option value="">Select Qualification</option>
             <option value="SSLC">SSLC</option>
             <option value="PLUS TWO">PLUS TWO</option>
-            <option value="Graduation">Graduaiton</option>
+            <option value="Graduation">Graduation</option>
             <option value="Post Graduation">Post Graduation</option>
           </select>
         </div>

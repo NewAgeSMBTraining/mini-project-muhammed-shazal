@@ -19,6 +19,12 @@ function ChangePassword(props) {
             }
             console.log(data);
         }).catch((err) => {
+            alert('Invalid old password')
+            if (details.role == 'admin') {
+                history.push('/admin-home')
+            } else {
+                history.push('/emp-home')
+            }
             console.log(err);
         })
     }

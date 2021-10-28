@@ -82,7 +82,7 @@ function ViewAllLeaves() {
 
     return (
         <div>
-            <h1 className="text-center mt-1">All Leaves</h1>
+            <h1 className="text-center mt-1">All Leave Applications</h1>
             <MDBDataTable
                 data={setDatas()}
                 className="px-3 "
