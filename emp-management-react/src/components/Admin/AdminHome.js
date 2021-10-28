@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { HTTP } from '../config/axios'
+import { HTTP } from '../../config/axios'
 import { useHistory } from 'react-router'
 import { MDBDataTable } from 'mdbreact';
 import './AdminHome.css'
@@ -15,7 +15,7 @@ function AdminHome(props) {
     }, [reload])
     const deleteUser = (id) => {
         HTTP.delete(`/delete-employee/${id}`).then((data) => {
-            window.location.reload();
+            setReload(!reload)
         }).catch((err) => {
             console.log(err);
         })
@@ -28,7 +28,7 @@ function AdminHome(props) {
         })
     }
     const signOut=(e)=>{
-        localStorage.removeItem('admin')
+        localStorage.removeItem('token')
         history.push('/')
       }
       const setDatas = () => {

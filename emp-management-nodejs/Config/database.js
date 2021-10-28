@@ -1,3 +1,4 @@
+//Database configuration
 const mongoose=require('mongoose')
 const connectMongoose = () => {
     mongoose.connect('mongodb://localhost:27017/EmployeeManagement', {

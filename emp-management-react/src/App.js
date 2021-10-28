@@ -1,21 +1,21 @@
-import logo from './logo.svg';
 import './App.css';
-import AdminLogin from './components/AdminLogin';
 import {BrowserRouter,Switch,Route,Link,Redirect} from 'react-router-dom'
-import AdminHome from './components/AdminHome';
-import EmpDetails from './components/EmpDetails';
-import AddEmployee from './components/AddEmployee';
-import EditEmpDetails from './components/EditEmpDetails';
+import AdminLogin from './components/Admin/AdminLogin';
+import AdminRegister from './components/Admin/AdminRegister';
+import ForgotPassword from './components/Admin/ForgotPassword';
+import AdminHome from './components/Admin/AdminHome';
+import EmpDetails from './components/Admin/EmpDetails';
+import AddEmployee from './components/Admin/AddEmployee';
+import EditEmpDetails from './components/Admin/EditEmpDetails';
+import ViewAllLeaves from './components/Admin/ViewAllLeaves';
+import ResetPassword from './components/Admin/ResetPassword';
 import EmployeeLogin from './components/Employee/EmployeeLogin';
 import EmployeeHome from './components/Employee/EmployeeHome';
 import EditDetails from './components/Employee/EditDetails';
 import ApplyLeave from './components/Employee/ApplyLeave';
 import ViewLeaves from './components/Employee/ViewLeaves';
-import ViewAllLeaves from './components/ViewAllLeaves';
-import AdminRegister from './components/AdminRegister';
 import ChangePassword from './components/ChangePassword/ChangePassword';
-import ForgotPassword from './components/ForgotPassword';
-import ResetPassword from './components/ResetPassword';
+//Validating JWT token
 function App() {
   const PrivateRoute = ({component: Component, ...rest}) => {
     return (

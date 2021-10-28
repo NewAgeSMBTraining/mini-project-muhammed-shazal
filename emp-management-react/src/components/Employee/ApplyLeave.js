@@ -3,25 +3,25 @@ import { useHistory } from 'react-router'
 import { HTTP } from '../../config/axios'
 
 function ApplyLeave(props) {
-    const history=useHistory()
-    const [data,setData]=useState({
-        uid:props.location.props._id,
-        email:props.location.props.email
+    const history = useHistory()
+    const [data, setData] = useState({
+        uid: props.location.props._id,
+        email: props.location.props.email
     })
-    const handleFormData=(e)=>{
-        const newData={...data}
-        newData[e.target.id]=e.target.value
+    const handleFormData = (e) => {
+        const newData = { ...data }
+        newData[e.target.id] = e.target.value
         setData(newData)
     }
-    const handleSubmit=(e)=>{
+    const handleSubmit = (e) => {
         e.preventDefault();
-        HTTP.post('/users/apply-leave',data).then((res)=>{
+        HTTP.post('/users/apply-leave', data).then((res) => {
             alert("Success")
             history.push({
                 pathname: '/emp-home',
-                props:{_id:props.location.props._id}
-              })
-        }).catch((err)=>{
+                props: { _id: props.location.props._id }
+            })
+        }).catch((err) => {
             alert("Failed")
         })
         console.log(data);
@@ -30,7 +30,7 @@ function ApplyLeave(props) {
         <div className="container-fluid">
             <h1>Apply for leave</h1>
             <form onSubmit={handleSubmit} class="form-horizontal ml-5">
-            <div class="form-group">
+                <div class="form-group">
                     <label for="inputdob">Leave From:</label>
                     <input onChange={(e) => { handleFormData(e) }} type="date" class="form-control col-md-3" id="from_leave_date" />
                 </div><div class="form-group">
@@ -39,11 +39,11 @@ function ApplyLeave(props) {
                 </div>
                 <div class="form-group">
                     <label for="inputName">Reason: </label>
-                    <input onChange={(e) => { handleFormData(e) }} type="text" class="form-control col-md-3 ml-1" id="reason" placeholder="Reason"/>
+                    <input onChange={(e) => { handleFormData(e) }} type="text" class="form-control col-md-3 ml-1" id="reason" placeholder="Reason" />
                 </div>
                 <div className="form-group">
-            <button type="submit" class="btn btn-primary">Submit</button>
-            </div>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
             </form>
         </div>
     )

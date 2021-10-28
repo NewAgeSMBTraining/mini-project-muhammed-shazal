@@ -3,36 +3,36 @@ import { useHistory } from 'react-router'
 import { HTTP } from '../../config/axios'
 import './EditDetails.css'
 function EditDetails(props) {
-    const history=useHistory()
-    const [empDetails,setEmpDetails]=useState(props.location.props)
-    const [data,setData]=useState()
+    const history = useHistory()
+    const [empDetails, setEmpDetails] = useState(props.location.props)
+    const [data, setData] = useState()
     useEffect(() => {
-        if(empDetails.gender==='male'){
+        if (empDetails.gender === 'male') {
             document.getElementById("male").checked = true;
-        }if(empDetails.gender==='female'){
+        } if (empDetails.gender === 'female') {
             document.getElementById("female").checked = true;
         }
     }, [empDetails])
-    const handleFormData=(e)=>{
-        if(e.target.id=="male"||e.target.id=="female"){
-            const newData={...data}
-            newData['gender']=e.target.name
+    const handleFormData = (e) => {
+        if (e.target.id == "male" || e.target.id == "female") {
+            const newData = { ...data }
+            newData['gender'] = e.target.name
             setData(newData)
         }
-        else{
-            const newData={...data}
-            newData[e.target.id]=e.target.value
+        else {
+            const newData = { ...data }
+            newData[e.target.id] = e.target.value
             setData(newData)
         }
     }
-    const handleSubmit=(e)=>{
+    const handleSubmit = (e) => {
         e.preventDefault();
-        HTTP.post(`users/edit-details/${empDetails._id}`,data).then((data)=>{
+        HTTP.post(`users/edit-details/${empDetails._id}`, data).then((data) => {
             history.push({
                 pathname: '/emp-home',
-                props:{_id:empDetails._id}
-              })
-        }).catch((err)=>{
+                props: { _id: empDetails._id }
+            })
+        }).catch((err) => {
             alert('Updation Failed')
         })
     }

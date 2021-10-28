@@ -1,3 +1,4 @@
+//Employee Schema
 const mongoose=require('mongoose')
 var uniqueValidator = require('mongoose-unique-validator');
 

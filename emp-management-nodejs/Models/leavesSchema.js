@@ -1,3 +1,4 @@
+//Leaves Schema
 const mongoose=require('mongoose')
 var uniqueValidator = require('mongoose-unique-validator');
 const leavesSchema = new mongoose.Schema({

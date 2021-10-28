@@ -1,27 +1,27 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
-import { HTTP } from '../config/axios'
+import { HTTP } from '../../config/axios'
 import { useHistory } from 'react-router'
 import './AdminRegister.css'
 function AdminRegister() {
-    const history=useHistory()
-    const [email,setEmail]=useState('')
-    const [password,setPassword]=useState('')
-    const changeEmailHandler=(e)=>{
+    const history = useHistory()
+    const [email, setEmail] = useState('')
+    const [password, setPassword] = useState('')
+    const changeEmailHandler = (e) => {
         setEmail(e.target.value)
     }
-    const changePasswordHandler=(e)=>{
+    const changePasswordHandler = (e) => {
         setPassword(e.target.value)
     }
-    const loginHandler=(e)=>{
+    const loginHandler = (e) => {
         e.preventDefault();
-        HTTP.post('/register-admin',{
-            email:email,
-            password:password
-        }).then((data)=>{
+        HTTP.post('/register-admin', {
+            email: email,
+            password: password
+        }).then((data) => {
             alert("success")
-           history.push('/')
-        }).catch((err)=>{
+            history.push('/')
+        }).catch((err) => {
             alert("Login Failed")
             console.log(err);
         })
@@ -43,5 +43,4 @@ function AdminRegister() {
         </div>
     )
 }
-
 export default AdminRegister

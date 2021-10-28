@@ -1,3 +1,4 @@
+//Nodemailer configuration
 const nodemailer = require('nodemailer');
 module.exports={
    sendMail:async (details)=>{
