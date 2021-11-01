@@ -15,12 +15,12 @@ function EditDetails(props) {
     }, [empDetails])
     const handleFormData = (e) => {
         if (e.target.id == "male" || e.target.id == "female") {
-            if(e.target.id == "male"){
+            if (e.target.id == "male") {
                 document.getElementById("female").checked = false;
-              }
-              else{
+            }
+            else {
                 document.getElementById("male").checked = false;
-              }
+            }
             const newData = { ...data }
             newData['gender'] = e.target.name
             setData(newData)
@@ -43,8 +43,17 @@ function EditDetails(props) {
             alert('Updation Failed')
         })
     }
+    const back = () => {
+        history.push({
+            pathname: '/emp-home',
+            props: { _id:empDetails._id}
+        })
+    }
     return (
         <div className="container-fluid form">
+            <div>
+                <button class="btn btn-dark" type="button" onClick={back}>Back</button>
+            </div>
             <h1>Update The Details..</h1>
             <form onSubmit={handleSubmit} class="form-horizontal ml-5">
                 <div class="form-group">

@@ -24,10 +24,18 @@ function ApplyLeave(props) {
         }).catch((err) => {
             alert("Failed")
         })
-        console.log(data);
     }
+    const back=()=>{
+        history.push({
+          pathname: '/emp-home',
+          props: { _id:props.location.props._id}
+      })
+      }
     return (
         <div className="container-fluid">
+             <div>
+      <button class="btn btn-dark" type="button" onClick={back}>Back</button>
+      </div>
             <h1>Apply for leave</h1>
             <form onSubmit={handleSubmit} class="form-horizontal ml-5">
                 <div class="form-group">
